@@ -30,6 +30,8 @@ public class InitializeRequestHandler extends RequestHandler {
     }
 
     /**
+     * Creates list of all plays in DB
+     * and passed them to the *JSP_PLAYS_FILENAME* file.
      * See also the method
      * {@link RequestHandler#processRequest(HttpServletRequest, HttpServletResponse)}.
      */
@@ -37,9 +39,6 @@ public class InitializeRequestHandler extends RequestHandler {
     public void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
-            /**
-             * Get list of all plays and passed them to the *plays.jsp*.
-             */
             GenericDao dao = getFactory().getDao(getConnection(), Play.class);
             List<Play> playsList = dao.getAll();
             setRequestAttribute(JSP_PLAYS_LIST_ATTRIBUTE, playsList, req);

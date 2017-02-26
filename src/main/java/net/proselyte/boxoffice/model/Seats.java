@@ -1,6 +1,7 @@
 package net.proselyte.boxoffice.model;
 
 import net.proselyte.boxoffice.dao.Identification;
+import net.proselyte.boxoffice.model.helper.Utils;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

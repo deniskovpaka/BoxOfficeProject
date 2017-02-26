@@ -44,6 +44,7 @@ public abstract class RequestHandler {
     public static final String JSP_PLAYS_LIST_ATTRIBUTE     = "playsList";
     public static final String JSP_USER_INPUT_ATTRIBUTE     = "jspUserInput";
     public static final String JSP_USER_NAME_ATTRIBUTE      = "user_name";
+    public static final String JSP_TICKET_ATTRIBUTE         = "ticketTableList";
     public static final String JSP_REQUEST_NAME             = "jspRequest";
 
     /**
@@ -121,6 +122,25 @@ public abstract class RequestHandler {
                                            HttpServletResponse resp)
             throws ServletException, IOException {
         req.getRequestDispatcher(jspFileName).forward(req, resp);
+    }
+
+    /**
+     * The forwardRequestToHandler method used to
+     * forward a current request to another RequestHandler class.
+     * @param requestHandlerName
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void forwardRequestToHandler(String requestHandlerName,
+                                           HttpServletRequest req,
+                                           HttpServletResponse resp)
+            throws ServletException, IOException {
+        RequestHandler requestHandler =
+                RequestHandlerFactory.createRequestHandler(requestHandlerName,
+                                                getFactory(), getConnection());
+        requestHandler.processRequest(req, resp);
     }
 
     /**

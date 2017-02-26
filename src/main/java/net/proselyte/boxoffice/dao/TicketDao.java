@@ -1,6 +1,5 @@
 package net.proselyte.boxoffice.dao;
 
-
 import net.proselyte.boxoffice.model.Ticket;
 
 import java.sql.*;
@@ -23,18 +22,27 @@ public class TicketDao extends AbstractDao<Ticket, Integer> {
         setTableNameInDB("ticket");
     }
 
+    /**
+     * See also the method {@link AbstractDao#getCreateQuery()}.
+     */
     @Override
     String getCreateQuery() {
         return "INSERT INTO " + getTableNameInDB() + " (ticket_number, play_id, visitor_name) \n" +
                 "VALUES (?, ?, ?);";
     }
 
+    /**
+     * See also the method {@link AbstractDao#getUpdateQuery()}.
+     */
     @Override
     String getUpdateQuery() {
         return "UPDATE " + getTableNameInDB() + " SET ticket_number = ?, play_id = ?\n" +
         ", visitor_name = ? WHERE id = ?;";
     }
 
+    /**
+     * See also the method {@link AbstractDao#parseResultSet(ResultSet)}.
+     */
     @Override
     List<Ticket> parseResultSet(ResultSet rs) throws SQLException {
         LinkedList<Ticket> result = new LinkedList<>();
@@ -55,6 +63,10 @@ public class TicketDao extends AbstractDao<Ticket, Integer> {
         return result;
     }
 
+    /**
+     * See also the method
+     * {@link AbstractDao#prepareStatementForInsert(PreparedStatement, Identification)}.
+     */
     @Override
     void prepareStatementForInsert(PreparedStatement statement,
                                    Ticket ticket) throws SQLException {
@@ -68,6 +80,10 @@ public class TicketDao extends AbstractDao<Ticket, Integer> {
         }
     }
 
+    /**
+     * See also the method
+     * {@link AbstractDao#prepareStatementForUpdate(PreparedStatement, Identification)}.
+     */
     @Override
     void prepareStatementForUpdate(PreparedStatement statement,
                                    Ticket ticket) throws SQLException {

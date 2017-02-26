@@ -1,6 +1,5 @@
 package net.proselyte.boxoffice.dao;
 
-
 import net.proselyte.boxoffice.model.Genre;
 
 import java.sql.Connection;

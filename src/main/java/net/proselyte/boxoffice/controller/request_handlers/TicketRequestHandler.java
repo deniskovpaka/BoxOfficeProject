@@ -20,22 +20,30 @@ import java.util.List;
  */
 public class TicketRequestHandler extends RequestHandler {
     /**
-     * ClientRequestHandler constructor.
+     * TicketRequestHandler constructor.
      */
     public TicketRequestHandler(DaoFactory factory, Connection connection) {
         super(factory, connection);
     }
 
+    /**
+     * This method prepare data for the *JSP_TICKETS_FILENAME* file,
+     * in order to show current state of the ticket table in DB.
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
             GenericDao dao = getFactory().getDao(getConnection(), Ticket.class);
             List<Ticket> ticketsList = dao.getAll();
-
+            setRequestAttribute(JSP_TICKET_ATTRIBUTE, ticketsList, req);
+            forwardRequestToJSPFile(JSP_TICKETS_FILENAME, req, resp);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        forwardRequestToJSPFile(JSP_INIT_FILENAME, req, resp);
     }
 }

@@ -22,13 +22,20 @@ import java.sql.SQLException;
  */
 @WebServlet(name = "/boxoffice", urlPatterns = "/")
 public class BoxOfficeController extends HttpServlet {
+    /**
+     * Current DAO factory.
+     */
     private DaoFactory factory;
+
+    /**
+     * Context.
+     */
     private Connection connection;
 
     /**
      * Initialize a DAO Factory and
      * connect to DB.
-     * @throws ServletException
+     * @throws ServletException during connection to DB.
      */
     public void init() throws ServletException {
         factory = new BoxOfficeDaoFactory();

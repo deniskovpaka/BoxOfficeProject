@@ -1,4 +1,4 @@
-package net.proselyte.boxoffice.model;
+package net.proselyte.boxoffice.model.helper;
 
 import java.util.Arrays;
 import java.util.function.Function;
