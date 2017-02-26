@@ -62,13 +62,11 @@
 				<th width="40">PlayID</th>
 				<th width="120">PlayName</th>
 			<tr>
-			<% Integer playIdNumber = 0; %>
 			<c:forEach items="${playsList}" var="play">
 				<tr>
-					<td><%= playIdNumber %></td>
+					<td>${play.id}</td>
 					<td>${play.playName}</td>
 				<tr>
-				<% playIdNumber++; %>
 			</c:forEach>
 		</table>
 		<h1>Choose a Play</h1>

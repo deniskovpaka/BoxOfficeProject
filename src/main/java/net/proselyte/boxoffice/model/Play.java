@@ -31,7 +31,7 @@ public class Play implements Identification<Integer> {
      */
     @Override
     public Integer getId() {
-        return null;
+        return id;
     }
 
     /**

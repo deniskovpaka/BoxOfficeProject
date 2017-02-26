@@ -21,31 +21,32 @@ public abstract class RequestHandler {
     /**
      * JSP requester's name.
      */
-    public static final String JSP_INITIALIZE_REQUEST       = "initializeRequest";
-    public static final String JSP_PLAYS_REQUEST            = "playsRequest";
-    public static final String JSP_SEATS_REQUEST            = "seatsRequest";
-    public static final String JSP_TICKETS_REQUEST          = "ticketRequest";
+    public static final String JSP_INITIALIZE_REQUEST           = "initializeRequest";
+    public static final String JSP_PLAYS_REQUEST                = "playsRequest";
+    public static final String JSP_SEATS_REQUEST                = "seatsRequest";
+    public static final String JSP_TICKETS_REQUEST              = "ticketRequest";
 
     /**
      * JSP file names.
      * They needs to pass request from java side to JSP.
      */
-    public static final String JSP_INIT_FILENAME            = "./pages/init.jsp";
-    public static final String JSP_PLAYS_FILENAME           = "./pages/plays.jsp";
-    public static final String JSP_SEATS_FILENAME           = "./pages/seats.jsp";
-    public static final String JSP_TICKETS_FILENAME         = "./pages/tickets.jsp";
+    public static final String JSP_INIT_FILENAME                = "./pages/init.jsp";
+    public static final String JSP_PLAYS_FILENAME               = "./pages/plays.jsp";
+    public static final String JSP_SEATS_FILENAME               = "./pages/seats.jsp";
+    public static final String JSP_TICKETS_FILENAME             = "./pages/tickets.jsp";
 
     /**
      * JSP parameters/attributes names.
      */
-    public static final String JSP_PLAY_ID_PARAMETER        = "play_id";
-    public static final String JSP_SEAT_NUMBERS_PARAMETER   = "seatNumbers";
-    public static final String JSP_SEATS_LIST_ATTRIBUTE     = "seatsList";
-    public static final String JSP_PLAYS_LIST_ATTRIBUTE     = "playsList";
-    public static final String JSP_USER_INPUT_ATTRIBUTE     = "jspUserInput";
-    public static final String JSP_USER_NAME_ATTRIBUTE      = "user_name";
-    public static final String JSP_TICKET_ATTRIBUTE         = "ticketTableList";
-    public static final String JSP_REQUEST_NAME             = "jspRequest";
+    public static final String JSP_PLAY_ID_PARAMETER            = "play_id";
+    public static final String JSP_SEAT_NUMBERS_PARAMETER       = "seatNumbers";
+    public static final String JSP_SEATS_LIST_ATTRIBUTE         = "seatsList";
+    public static final String JSP_PLAYS_LIST_ATTRIBUTE         = "playsList";
+    public static final String JSP_PLAYS_NAMES_LIST_ATTRIBUTE   = "playNamesList";
+    public static final String JSP_USER_INPUT_ATTRIBUTE         = "jspUserInput";
+    public static final String JSP_USER_NAME_ATTRIBUTE          = "user_name";
+    public static final String JSP_TICKET_ATTRIBUTE             = "ticketTableList";
+    public static final String JSP_REQUEST_NAME                 = "jspRequest";
 
     /**
      * Current DAO factory.

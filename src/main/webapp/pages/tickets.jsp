@@ -43,21 +43,26 @@
     <body>
     <h4>Tickets table state:</h4>
     <table class="tg">
+        <tr>
+            <th width="80">ID</th>
+            <th width="120">Ticket's PlayID</th>
+            <th width="120">User/Visitor Name</th>
+            <th width="220">Ticket's numbers</th>
+        </tr>
+        <%-- get list of all plays --%>
+        <%
+            String[] playNamesList = (String[]) request.getAttribute("playNamesList");
+            int namePosition = 0;
+        %>
         <c:forEach items="${ticketTableList}" var="ticket">
             <tr>
-                <td>Ticket ID:<c:out value="${ticket.id}"/></td>
-            </tr>
-            <tr>
-                <td>Ticket's PlayID: <c:out value="${ticket.id}"/></td>
-            </tr>
-            <tr>
-                <td>User/Visitor Name: <c:out value="${ticket.visitorName}"/></td>
-            </tr>
-            <tr>
-                <td>Ticket's number:
-                <c:forEach items="${ticket.ticketNumber}" var="tNumber">
-                    <c:out value="${tNumber}"/>
-                </c:forEach>
+                <td>${ticket.id}</td>
+                <td><%= playNamesList[namePosition++] %></td>
+                <td>${ticket.visitorName}</td>
+                <td>
+                    <c:forEach items="${ticket.ticketNumber}" var="tNumber">
+                        <c:out value="${tNumber}"/>
+                    </c:forEach>
                 </td>
             </tr>
         </c:forEach>
