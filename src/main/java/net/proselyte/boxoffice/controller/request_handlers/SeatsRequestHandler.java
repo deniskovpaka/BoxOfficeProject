@@ -47,8 +47,7 @@ public class SeatsRequestHandler extends RequestHandler {
             String userName = req.getParameter(JSP_USER_NAME_ATTRIBUTE);
             createRecordToTicketTable(inputtedPlayId, seatNumbers, userName);
             dao.update(seats);
-            forwardRequestToHandler(RequestHandler.JSP_TICKETS_REQUEST, req, resp); // TODO
-            //forwardRequestToJSPFile(JSP_INIT_FILENAME, req, resp);
+            forwardRequestToHandler(RequestHandler.JSP_TICKETS_REQUEST, req, resp);
         } catch (SQLException e) {
             e.printStackTrace();
         }
