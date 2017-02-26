@@ -1,6 +1,5 @@
 package net.proselyte.boxoffice.controller;
 
-
 import net.proselyte.boxoffice.controller.request_handlers.RequestHandler;
 import net.proselyte.boxoffice.controller.request_handlers.RequestHandlerFactory;
 import net.proselyte.boxoffice.dao.BoxOfficeDaoFactory;
@@ -23,7 +22,6 @@ import java.sql.SQLException;
  */
 @WebServlet(name = "/boxoffice", urlPatterns = "/")
 public class BoxOfficeController extends HttpServlet {
-    public static final String JSP_REQUEST_NAME = "jspRequest";
     private DaoFactory factory;
     private Connection connection;
 
@@ -33,7 +31,6 @@ public class BoxOfficeController extends HttpServlet {
      * @throws ServletException
      */
     public void init() throws ServletException {
-        System.out.println("init() ");
         factory = new BoxOfficeDaoFactory();
         try {
             connection = (Connection) factory.getConnection();
@@ -51,7 +48,6 @@ public class BoxOfficeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        System.out.println("doGet() ");
         req.getRequestDispatcher(RequestHandler.JSP_INIT_FILENAME).forward(req, resp);
     }
 
@@ -62,8 +58,7 @@ public class BoxOfficeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        System.out.println("doPost() ");
-        String jspRequestName = req.getParameter(JSP_REQUEST_NAME);
+        String jspRequestName = req.getParameter(RequestHandler.JSP_REQUEST_NAME);
         if (jspRequestName != null) {
             RequestHandler requestHandler =
                     RequestHandlerFactory.createRequestHandler(jspRequestName, factory, connection);

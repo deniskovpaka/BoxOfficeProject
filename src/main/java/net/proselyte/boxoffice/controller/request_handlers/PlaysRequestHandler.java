@@ -31,26 +31,28 @@ public class PlaysRequestHandler extends RequestHandler {
     }
 
     /**
+     * This method process the request from the *JSP_PLAYS_FILENAME* file.
+     *
      * See also the method
      * {@link RequestHandler#processRequest(HttpServletRequest, HttpServletResponse)}.
      */
     @Override
     public void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String userInputtedPlayId = req.getParameter(JSP_USER_INPUT_ATTRIBUTE);
-        Integer inputtedPlayId = Integer.valueOf(userInputtedPlayId);
         try {
+            String userInputtedPlayId = req.getParameter(JSP_USER_INPUT_ATTRIBUTE);
+            Integer inputtedPlayId = Integer.valueOf(userInputtedPlayId);
             GenericDao dao = getFactory().getDao(getConnection(), Seats.class);
             String sqlQuery = "WHERE play_id = " + inputtedPlayId;
             Seats seats = (Seats) getDaoRecord(dao, sqlQuery);
             if (seats.hasAvailableSeats()) {
                 boolean[] seatsList = Utils.booleansClassArrayToPrimitiveArray(seats.getSeatsList());
                 setRequestAttribute(JSP_PLAY_ID_PARAMETER, inputtedPlayId, req);
-                setRequestAttribute(SEATS_LIST_ATTRIBUTE, seatsList, req);
+                setRequestAttribute(JSP_SEATS_LIST_ATTRIBUTE, seatsList, req);
                 forwardRequestToJSPFile(JSP_SEATS_FILENAME, req, resp);
             } else {
                 List<Play> playsList = buildPlaysListForPlaysJSP(seats.getPlayId());
-                setRequestAttribute(PLAYS_LIST_ATTRIBUTE, playsList, req);
+                setRequestAttribute(JSP_PLAYS_LIST_ATTRIBUTE, playsList, req);
                 forwardRequestToJSPFile(JSP_PLAYS_FILENAME, req, resp);
             }
         } catch (SQLException e) {

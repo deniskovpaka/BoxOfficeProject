@@ -37,9 +37,12 @@ public class InitializeRequestHandler extends RequestHandler {
     public void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
+            /**
+             * Get list of all plays and passed them to the *plays.jsp*.
+             */
             GenericDao dao = getFactory().getDao(getConnection(), Play.class);
             List<Play> playsList = dao.getAll();
-            setRequestAttribute(PLAYS_LIST_ATTRIBUTE, playsList, req);
+            setRequestAttribute(JSP_PLAYS_LIST_ATTRIBUTE, playsList, req);
             forwardRequestToJSPFile(JSP_PLAYS_FILENAME, req, resp);
         } catch (SQLException e) {
             e.printStackTrace();
