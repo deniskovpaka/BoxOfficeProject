@@ -20,5 +20,6 @@ Java Code Coventions и Naming Style должны быть соблюдены.
 Если мест или данного спектакля нет, в кассе посетителю предлагаются другие спектакли
 данного жанра со свободными местами и цикл повторяется.
 
-# Preload
-1) Preload JDBS driver - https://jdbc.postgresql.org/download.html
+# Предварительная загрузка
+1) JDBS driver - https://jdbc.postgresql.org/download.html.
+2) Поправить src/main/resources/database/database.properties файл.
