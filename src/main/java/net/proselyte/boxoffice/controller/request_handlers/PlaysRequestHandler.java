@@ -15,6 +15,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The PlaysRequestHandler class is responsible
@@ -23,6 +25,7 @@ import java.util.List;
  * @author deniskovpaka
  */
 public class PlaysRequestHandler extends RequestHandler {
+    final static Logger logger = Logger.getLogger(PlaysRequestHandler.class.getName());
     /**
      * PlaysRequestHandler constructor.
      */
@@ -53,8 +56,15 @@ public class PlaysRequestHandler extends RequestHandler {
                 forwardRequestToJSPFile(JSP_SEATS_FILENAME, req, resp);
             } else {
                 List<Play> playsList = buildPlaysListForPlaysJSP(seats.getPlayId());
-                setRequestAttribute(JSP_PLAYS_LIST_ATTRIBUTE, playsList, req);
-                forwardRequestToJSPFile(JSP_PLAYS_FILENAME, req, resp);
+                if (playsList.isEmpty()) {
+                    /** Forward request to *JSP_INIT_FILENAME* file in case of
+                        one genre of plays is EMPTY */
+                    logger.log(Level.WARNING, "The list of one genre plays is EMPTY!!!");
+                    forwardRequestToJSPFile(JSP_INIT_FILENAME, req, resp);
+                } else {
+                    setRequestAttribute(JSP_PLAYS_LIST_ATTRIBUTE, playsList, req);
+                    forwardRequestToJSPFile(JSP_PLAYS_FILENAME, req, resp);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,13 +76,12 @@ public class PlaysRequestHandler extends RequestHandler {
      * the *JSP_PLAYS_FILENAME* file.
      * @param playId the ID to identify the play genre.
      * @return plays list.
-     * @throws SQLException during genre list building.
+     * @throws SQLException in case of the one genre
+     * playsList is empty.
      */
     private List<Play> buildPlaysListForPlaysJSP(int playId) throws SQLException {
         List<Play> playsList = getListPlaysOfOneGenre(playId);
         removePlayIfSeatsAreSold(playsList);
-        if (playsList.isEmpty())
-            throw new UnsupportedOperationException("All plays are reserved!!!"); // TODO Need to clarify with Mentor. IMHO - all plays should be shown
         return playsList;
     }
 

@@ -1,6 +1,7 @@
 package net.proselyte.boxoffice.dao;
 
 import net.proselyte.boxoffice.model.*;
+import net.proselyte.boxoffice.model.helper.DataBaseProperties;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,20 +18,20 @@ import java.util.Map;
 public class BoxOfficeDaoFactory implements DaoFactory<Connection> {
 
     /**
-     * List of specific properties for the establishing
-     * connection to DB. // TODO how to move this parameters in the config file???
+     * DataBaseProperties instance.
+     * Used to the establishing connection to DB.
      */
-    private String user         = "postgres";
-    private String password     = "p@ssword";
-    private String url          = "jdbc:postgresql://localhost:5432/";
-    private String driver       = "org.postgresql.Driver";
+    private static final DataBaseProperties DATABASE_PROPERTIES_INSTANCE
+                                            = DataBaseProperties.getInstance();
 
     /**
      * See also the method {@link DaoFactory#getConnection()}.
      */
     @Override
     public Connection getConnection() throws SQLException {
-        Connection connection = DriverManager.getConnection(url, user, password);
+        Connection connection = DriverManager.getConnection(DATABASE_PROPERTIES_INSTANCE.getDataBaseUrl(),
+                                                            DATABASE_PROPERTIES_INSTANCE.getDataBaseUser(),
+                                                            DATABASE_PROPERTIES_INSTANCE.getDataBasePassword());
         return connection;
     }
 
@@ -44,7 +45,7 @@ public class BoxOfficeDaoFactory implements DaoFactory<Connection> {
      */
     public BoxOfficeDaoFactory() {
         try {
-            Class.forName(driver);
+            Class.forName(DATABASE_PROPERTIES_INSTANCE.getDataBaseDriver());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

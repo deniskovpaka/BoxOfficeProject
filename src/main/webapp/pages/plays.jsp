@@ -9,7 +9,7 @@
 		function checkUserInput() {
 			var pId = parseInt(document.getElementById('id').value);
 			var pListSize = parseInt(document.getElementById('size').value);
-			if (pId < 0 || pId > pListSize
+			if (pId < 1 || pId > pListSize
 						|| isNaN(pId)) {
 				alert('Please be careful. Input playId one more time.');
 				return false;
