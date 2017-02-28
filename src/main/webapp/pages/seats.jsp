@@ -89,7 +89,7 @@
                 <%-- show seat number only when seat is not reserved --%>
                 <c:if test="${!isReservedSeat}">
                     <h5>
-                        <%= availableSeatNumber %> <input type="checkbox" name="seatNumbers" value=<%= availableSeatNumber %> >
+                        <%= availableSeatNumber + 1%> <input type="checkbox" name="seatNumbers" value=<%= availableSeatNumber %> >
                     </h5>
                 </c:if>
                 <% availableSeatNumber++; %>
