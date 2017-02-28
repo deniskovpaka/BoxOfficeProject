@@ -38,13 +38,16 @@ public class InitializeRequestHandler extends RequestHandler {
     @Override
     public void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        try {
-            GenericDao dao = getFactory().getDao(getConnection(), Play.class);
-            List<Play> playsList = dao.getAll();
-            setRequestAttribute(JSP_PLAYS_LIST_ATTRIBUTE, playsList, req);
-            forwardRequestToJSPFile(JSP_PLAYS_FILENAME, req, resp);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+            String userChoise = req.getParameter(JSP_USER_INPUT_ATTRIBUTE);
+            System.out.println("userChoise = " + userChoise);
+
+//            GenericDao dao = getFactory().getDao(getConnection(), Play.class);
+//            List<Play> playsList = dao.getAll();
+//            setRequestAttribute(JSP_PLAYS_LIST_ATTRIBUTE, playsList, req);
+//            forwardRequestToJSPFile(JSP_PLAYS_FILENAME, req, resp);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 }
