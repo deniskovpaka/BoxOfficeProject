@@ -34,6 +34,7 @@ public abstract class RequestHandler {
     public static final String JSP_PLAYS_FILENAME               = "./pages/plays.jsp";
     public static final String JSP_SEATS_FILENAME               = "./pages/seats.jsp";
     public static final String JSP_TICKETS_FILENAME             = "./pages/tickets.jsp";
+    public static final String JSP_INPUT_PLAYS_NAME_FILENAME    = "./pages/input_play_name.jsp";
 
     /**
      * JSP parameters/attributes names.

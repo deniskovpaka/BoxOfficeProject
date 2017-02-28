@@ -30,24 +30,58 @@ public class InitializeRequestHandler extends RequestHandler {
     }
 
     /**
-     * Creates list of all plays in DB
-     * and passed them to the *JSP_PLAYS_FILENAME* file.
+     * This method define the user's choice in
+     * order to find a specific play.
+     * 1 - find play by PlayID.
+     * 2 - find play by Play's name.
      * See also the method
      * {@link RequestHandler#processRequest(HttpServletRequest, HttpServletResponse)}.
      */
     @Override
     public void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-//        try {
-            String userChoise = req.getParameter(JSP_USER_INPUT_ATTRIBUTE);
-            System.out.println("userChoise = " + userChoise);
+            Integer userPlayChoice = Integer.valueOf(req.getParameter(JSP_USER_INPUT_ATTRIBUTE));
+            switch (userPlayChoice) {
+                case 1:
+                    choosePlayByID(req, resp);
+                    break;
+                case 2:
+                    choosePlayByName(req, resp);
+                    break;
+                default:
+                    throw new IOException("The choice for finding a play" +
+                            "is not defined!!!");
+            }
+    }
 
-//            GenericDao dao = getFactory().getDao(getConnection(), Play.class);
-//            List<Play> playsList = dao.getAll();
-//            setRequestAttribute(JSP_PLAYS_LIST_ATTRIBUTE, playsList, req);
-//            forwardRequestToJSPFile(JSP_PLAYS_FILENAME, req, resp);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+    /**
+     * Creates list of all plays in DB
+     * and passed them to the *JSP_PLAYS_FILENAME* file.
+     */
+    private void choosePlayByID(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        setPlaysListAttributeToRequest(req);
+        forwardRequestToJSPFile(JSP_PLAYS_FILENAME, req, resp);
+    }
+
+    /**
+     * Forward request to *JSP_INPUT_PLAYS_NAME_FILENAME* file in
+     * order to user play name input.
+     */
+    private void choosePlayByName(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        setPlaysListAttributeToRequest(req);
+        forwardRequestToJSPFile(JSP_INPUT_PLAYS_NAME_FILENAME, req, resp);
+    }
+
+    private void setPlaysListAttributeToRequest(HttpServletRequest req)
+            throws ServletException, IOException {
+        try {
+            GenericDao dao = getFactory().getDao(getConnection(), Play.class);
+            List<Play> playsList = dao.getAll();
+            setRequestAttribute(JSP_PLAYS_LIST_ATTRIBUTE, playsList, req);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
