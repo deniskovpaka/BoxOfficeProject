@@ -7,7 +7,7 @@
                 var pId = document.getElementById('id').value;
                 var playIds = document.getElementsByClassName('playId');
                 var playNames = document.getElementsByClassName('playName');
-                for(var i = 0; i < names.length; i++) {
+                for(var i = 0; i < playNames.length; i++) {
                     var name = playNames[i].innerText;
                     if (pId.toUpperCase() === name.toUpperCase()) {
                         document.getElementById('id').value = playIds[i].innerText;

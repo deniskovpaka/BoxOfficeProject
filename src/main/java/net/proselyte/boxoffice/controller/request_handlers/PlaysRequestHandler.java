@@ -45,6 +45,8 @@ public class PlaysRequestHandler extends RequestHandler {
     public void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
+            String t = req.getParameter(JSP_USER_INPUT_ATTRIBUTE);
+            System.out.println("ttt = " + t);
             Integer inputtedPlayId = Integer.valueOf(req.getParameter(JSP_USER_INPUT_ATTRIBUTE));
             GenericDao dao = getFactory().getDao(getConnection(), Seats.class);
             String sqlQuery = "WHERE play_id = " + inputtedPlayId;
