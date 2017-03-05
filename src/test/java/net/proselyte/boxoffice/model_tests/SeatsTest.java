@@ -9,6 +9,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import java.util.Arrays;
 import java.util.Random;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
 
 /**
@@ -32,22 +35,22 @@ public class SeatsTest {
     @Test
     public void shouldReturnProperSeatsIdThatWasSetBefore()
             throws Exception {
-        assertNotNull(seats);
+        assertThat(seats, notNullValue());
         seats.setId(ID);
-        assertEquals(seats.getId(), ID);
+        assertThat(seats.getId(), is(ID));
     }
 
     @Test
     public void shouldReturnNullIfSeatsIdWasNotSet()
             throws Exception {
-        assertNotNull(seats);
-        assertNull(seats.getId());
+        assertThat(seats, notNullValue());
+        assertThat(seats.getId(), nullValue());
     }
 
     @Test
     public void shouldReturnNotReservedStateForAllSeats()
             throws Exception {
-        assertNotNull(seats);
+        assertThat(seats, notNullValue());
         /**
          * All seat's state must be set to FALSE right
          * after Seats instance was created.
@@ -55,42 +58,42 @@ public class SeatsTest {
         for (int seatPosition = 0; seatPosition < seats.getSeatsList().length;
              seatPosition++) {
             Boolean seatState = seats.getSeatState(seatPosition);
-            assertFalse(seatState);
+            assertThat(seatState, is(false));
         }
     }
 
     @Test
     public void shouldReturnReservedStateForAllSeats()
             throws Exception {
-        assertNotNull(seats);
+        assertThat(seats, notNullValue());
         Boolean reservedSeatState = Boolean.TRUE;
         for (int seatPosition = 0; seatPosition < seats.getSeatsList().length;
              seatPosition++) {
             Boolean currentSeatState = seats.getSeatState(seatPosition);
-            assertFalse(currentSeatState);
+            assertThat(currentSeatState, is(false));
 
             /** Change current seat state to Reserved */
             seats.setSeatState(seatPosition, reservedSeatState);
             currentSeatState = seats.getSeatState(seatPosition);
-            assertTrue(currentSeatState);
+            assertThat(currentSeatState, is(true));
         }
     }
 
     @Test
     public void shouldReturnNotReservedStateInCaseOfIncorrectSeatNumber()
             throws Exception {
-        assertNotNull(seats);
+        assertThat(seats, notNullValue());
         int incorrectSeatNumber = seats.getSeatsList().length + 1 /** Extra number */;
-        assertFalse(seats.getSeatState(incorrectSeatNumber));
+        assertThat(seats.getSeatState(incorrectSeatNumber), is(false));
 
         incorrectSeatNumber = -1 /** Set invalid seat number */;
-        assertFalse(seats.getSeatState(incorrectSeatNumber));
+        assertThat(seats.getSeatState(incorrectSeatNumber), is(false));
     }
 
     @Test
     public void shouldReturnSeatsListAsItWasSetBefore()
             throws Exception {
-        assertNotNull(seats);
+        assertThat(seats, notNullValue());
         /** Get current SeatsList state */
         Boolean[] newSeatsList = seats.getSeatsList();
 
@@ -102,13 +105,13 @@ public class SeatsTest {
         seats.setSeatsList(newSeatsList);
         for (int seatPosition = 0; seatPosition < seats.getSeatsList().length;
              seatPosition++)
-            assertEquals(seats.getSeatState(seatPosition), newSeatsList[seatPosition]);
+            assertThat(seats.getSeatState(seatPosition), is(newSeatsList[seatPosition]));
     }
 
     @Test
     public void shouldReturnUnchangedSeatsListInCaseOfIncorrectSizeOfTheNewSeatsList()
             throws Exception {
-        assertNotNull(seats);
+        assertThat(seats, notNullValue());
         /** Get current SeatsList state */
         Boolean[] currentSeatsList = seats.getSeatsList();
 
@@ -136,7 +139,7 @@ public class SeatsTest {
     @Test
     public void shouldReturnTrueIfAtLeastOneSeatIsAvailable()
             throws Exception {
-        assertNotNull(seats);
+        assertThat(seats, notNullValue());
 
         /** Set all seats to reserved state */
         for (int i = 0; i < seats.getSeatsList().length; i++)
@@ -146,6 +149,21 @@ public class SeatsTest {
         int randomSeatsNumber = new Random().nextInt(seats.getSeatsList().length);
         seats.setSeatState(randomSeatsNumber, Boolean.FALSE);
 
-        assertTrue(seats.hasAvailableSeats());
+        assertThat(seats.hasAvailableSeats(), is(true));
+    }
+
+    @Test
+    public void shouldReturnProperPlayIdThatWasSetBefore()
+            throws Exception {
+        assertThat(seats, notNullValue());
+        seats.setPlayId(PLAY_ID);
+        assertThat(seats.getPlayId(), is(PLAY_ID));
+    }
+
+    @Test
+    public void shouldReturnNullIfPlayIdWasNotSet()
+            throws Exception {
+        assertThat(seats, notNullValue());
+        assertThat(seats.getPlayId(), nullValue());
     }
 }

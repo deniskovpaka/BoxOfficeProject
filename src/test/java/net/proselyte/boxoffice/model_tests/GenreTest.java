@@ -6,7 +6,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 /**
  * The GenreTest covers all Genre's class
@@ -29,30 +33,30 @@ public class GenreTest {
     @Test
     public void shouldReturnProperGenreNameThatWasSetBefore()
             throws Exception {
-        assertNotNull(genre);
+        assertThat(genre, notNullValue());
         genre.setGenreName(GENRE_NAME);
-        assertEquals(genre.getGenreName(), GENRE_NAME);
+        assertThat(genre.getGenreName(), is(GENRE_NAME));
     }
 
     @Test
     public void shouldReturnNullIfGenreNameWasNotSet()
             throws Exception {
-        assertNotNull(genre);
-        assertNull(genre.getGenreName());
+        assertThat(genre, notNullValue());
+        assertThat(genre.getGenreName(), nullValue());
     }
 
     @Test
     public void shouldReturnProperGenreIdThatWasSetBefore()
             throws Exception {
-        assertNotNull(genre);
+        assertThat(genre, notNullValue());
         genre.setId(GENRE_ID);
-        assertEquals(genre.getId(), GENRE_ID);
+        assertThat(genre.getId(), is(GENRE_ID));
     }
 
     @Test
     public void shouldReturnNullIfGenreIdWasNotSet()
             throws Exception {
-        assertNotNull(genre);
-        assertNull(genre.getId());
+        assertThat(genre, notNullValue());
+        assertThat(genre.getId(), nullValue());
     }
 }

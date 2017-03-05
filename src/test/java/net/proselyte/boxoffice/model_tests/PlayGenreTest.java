@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
 
 /**
@@ -30,45 +33,45 @@ public class PlayGenreTest {
     @Test
     public void shouldReturnProperPlayGenreIdThatWasSetBefore()
             throws Exception {
-        assertNotNull(playGenre);
+        assertThat(playGenre, notNullValue());
         playGenre.setId(ID);
-        assertEquals(playGenre.getId(), ID);
+        assertThat(playGenre.getId(), is(ID));
     }
 
     @Test
     public void shouldReturnNullIfPlayGenreIdWasNotSet()
             throws Exception {
-        assertNotNull(playGenre);
-        assertNull(playGenre.getId());
+        assertThat(playGenre, notNullValue());
+        assertThat(playGenre.getId(), nullValue());
     }
 
     @Test
     public void shouldReturnProperGenreIdFromPlayGenreInstanceThatWasSetBefore()
             throws Exception {
-        assertNotNull(playGenre);
+        assertThat(playGenre, notNullValue());
         playGenre.setGenreId(GENRE_ID);
-        assertEquals(playGenre.getGenreId(), GENRE_ID);
+        assertThat(playGenre.getGenreId(), is(GENRE_ID));
     }
 
     @Test
     public void shouldReturnGenreIdAsNullIfItWasNotSetToPlayGenreInstanceBefore()
             throws Exception {
-        assertNotNull(playGenre);
-        assertNull(playGenre.getGenreId());
+        assertThat(playGenre, notNullValue());
+        assertThat(playGenre.getGenreId(), nullValue());
     }
 
     @Test
     public void shouldReturnProperPlayIdFromPlayGenreInstanceThatWasSetBefore()
             throws Exception {
-        assertNotNull(playGenre);
+        assertThat(playGenre, notNullValue());
         playGenre.setPlayId(PLAY_ID);
-        assertEquals(playGenre.getPlayId(), PLAY_ID);
+        assertThat(playGenre.getPlayId(), is(PLAY_ID));
     }
 
     @Test
     public void shouldReturnPlayIdAsNullIfItWasNotSetToPlayGenreInstanceBefore()
             throws Exception {
-        assertNotNull(playGenre);
-        assertNull(playGenre.getPlayId());
+        assertThat(playGenre, notNullValue());
+        assertThat(playGenre.getPlayId(), nullValue());
     }
 }

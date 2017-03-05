@@ -1,6 +1,5 @@
 package net.proselyte.boxoffice.model;
 
-
 import net.proselyte.boxoffice.dao.Identification;
 import net.proselyte.boxoffice.model.helper.Utils;
 
