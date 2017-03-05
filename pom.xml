@@ -11,6 +11,7 @@
     <properties>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <jstl.version>1.2</jstl.version>
+        <org.hamcrest.version>2.0.0.0</org.hamcrest.version>
         <postgres.version>9.1-901-1.jdbc4</postgres.version>
         <junit.version>4.11</junit.version>
         <mockito.version>1.9.5</mockito.version>
@@ -28,6 +29,13 @@
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-junit</artifactId>
+            <version>${org.hamcrest.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -60,6 +68,13 @@
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito</artifactId>
             <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.sonatype.sisu</groupId>
+            <artifactId>sisu-guice</artifactId>
+            <version>2.1.7</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
