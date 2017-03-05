@@ -3,6 +3,7 @@ package net.proselyte.boxoffice.model;
 import net.proselyte.boxoffice.dao.Identification;
 import net.proselyte.boxoffice.model.helper.Utils;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,14 +15,19 @@ import java.util.logging.Logger;
  */
 public class Seats implements Identification<Integer> {
     final static Logger logger = Logger.getLogger(Seats.class.getName());
-    /**
-     * The SEATS_SIZE should be synchronized
-     * with {create_table.sql->seats.seats_list}.
-     */
-    private final int SEATS_SIZE = 10;
-    private Boolean[] seatsList = new Boolean[SEATS_SIZE];
+    private Boolean[] seatsList;
     private Integer id;
     private Integer playId;
+
+    public Seats() {
+        /**
+         * The SEATS_SIZE should be synchronized
+         * with {create_table.sql->seats.seats_list}.
+         */
+        final int SEATS_SIZE = 10;
+        seatsList = new Boolean[SEATS_SIZE];
+        Arrays.fill(seatsList, Boolean.FALSE);
+    }
 
     /**
      * Returns the play's ID which associated

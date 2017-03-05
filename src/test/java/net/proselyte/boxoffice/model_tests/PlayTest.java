@@ -22,7 +22,8 @@ public class PlayTest {
     private Play play;
 
     @Before
-    public void setUp() {
+    public void setUp()
+            throws Exception {
         play = new Play();
     }
 

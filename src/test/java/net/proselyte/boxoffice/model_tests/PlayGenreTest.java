@@ -22,7 +22,8 @@ public class PlayGenreTest {
     private PlayGenre playGenre;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp()
+            throws Exception {
         playGenre = new PlayGenre();
     }
 

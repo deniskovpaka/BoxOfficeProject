@@ -21,7 +21,8 @@ public class GenreTest {
     private Genre genre;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp()
+            throws Exception {
         genre = new Genre();
     }
 
