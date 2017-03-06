@@ -15,7 +15,8 @@ import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
 /**
- * The
+ * The AbstractDaoTest provides set of all methods
+ * that need to be tested for Dao instances.
  *
  * @author deniskovpaka
  */
