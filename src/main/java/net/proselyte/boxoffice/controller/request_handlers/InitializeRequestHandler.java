@@ -1,6 +1,5 @@
 package net.proselyte.boxoffice.controller.request_handlers;
 
-
 import net.proselyte.boxoffice.dao.DaoFactory;
 import net.proselyte.boxoffice.dao.GenericDao;
 import net.proselyte.boxoffice.model.Play;
