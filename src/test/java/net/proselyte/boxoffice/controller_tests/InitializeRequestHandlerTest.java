@@ -51,18 +51,22 @@ public class InitializeRequestHandlerTest {
     @Test
     public void processRequestById()
             throws Exception {
-        PowerMockito.when(requestMock.getParameter(JSP_USER_INPUT_ATTRIBUTE)).thenReturn(new String(USER_CHOICE_BY_ID));
+        PowerMockito.when(requestMock.getParameter(JSP_USER_INPUT_ATTRIBUTE))
+                .thenReturn(new String(USER_CHOICE_BY_ID));
         doNothing().when(handlerSpy, BY_ID_METHOD_NAME, anyObject(), anyObject());
         handlerSpy.processRequest(requestMock, responseMock);
-        verifyPrivate(handlerSpy, times(WANTED_NUMBER_OF_INVOCATION)).invoke(BY_ID_METHOD_NAME, anyObject(), anyObject());
+        verifyPrivate(handlerSpy, times(WANTED_NUMBER_OF_INVOCATION))
+                .invoke(BY_ID_METHOD_NAME, anyObject(), anyObject());
     }
 
     @Test
     public void processRequestByName()
             throws Exception {
-        PowerMockito.when(requestMock.getParameter(JSP_USER_INPUT_ATTRIBUTE)).thenReturn(new String(USER_CHOICE_BY_NAME));
+        PowerMockito.when(requestMock.getParameter(JSP_USER_INPUT_ATTRIBUTE))
+                .thenReturn(new String(USER_CHOICE_BY_NAME));
         doNothing().when(handlerSpy, BY_NAME_METHOD_NAME, anyObject(), anyObject());
         handlerSpy.processRequest(requestMock, responseMock);
-        verifyPrivate(handlerSpy, times(WANTED_NUMBER_OF_INVOCATION)).invoke(BY_NAME_METHOD_NAME, anyObject(), anyObject());
+        verifyPrivate(handlerSpy, times(WANTED_NUMBER_OF_INVOCATION))
+                .invoke(BY_NAME_METHOD_NAME, anyObject(), anyObject());
     }
 }
