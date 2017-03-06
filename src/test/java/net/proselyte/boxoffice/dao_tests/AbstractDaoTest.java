@@ -22,9 +22,12 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(Parameterized.class)
 public abstract class AbstractDaoTest<Context> {
-    @Parameterized.Parameter(0)
+    private final int FIRST_PARAMETER   = 0;
+    private final int SECOND_PARAMETER  = 1;
+
+    @Parameterized.Parameter(FIRST_PARAMETER)
     public Class daoClass;
-    @Parameterized.Parameter(1)
+    @Parameterized.Parameter(SECOND_PARAMETER)
     public Identification daoInstance;
 
     public abstract GenericDao dao();
