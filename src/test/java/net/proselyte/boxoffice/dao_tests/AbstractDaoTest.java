@@ -13,7 +13,6 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * The
@@ -22,41 +21,39 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(Parameterized.class)
 public abstract class AbstractDaoTest<Context> {
-    protected Class daoClass;
-    protected Identification notPersistedDto;
+    @Parameterized.Parameter(0)
+    public Class daoClass;
+    @Parameterized.Parameter(1)
+    public Identification daoInstance;
+
     public abstract GenericDao dao();
     public abstract Context context();
-    private static Integer unique_id = 0;
-
-    public AbstractDaoTest(Class clazz, Identification<Integer> notPersistedDto) {
-        this.daoClass = clazz;
-        this.notPersistedDto = notPersistedDto;
-    }
 
     @Test
     public void persist()
             throws Exception {
-        assertThat(notPersistedDto.getId(), nullValue());
-        notPersistedDto = dao().persist(notPersistedDto);
-        assertThat(notPersistedDto.getId(), notNullValue());
+        assertThat(daoInstance.getId(), nullValue());
+        daoInstance = dao().persist(daoInstance);
+        assertThat(daoInstance.getId(), notNullValue());
     }
 
     @Test
     public void getByPrimaryKey() throws Exception {
-        notPersistedDto = dao().persist(notPersistedDto);
-        Identification instance = dao().getByPrimaryKey(notPersistedDto.getId());
+        daoInstance = dao().persist(daoInstance);
+        Identification instance = dao().getByPrimaryKey(daoInstance.getId());
         assertThat(instance, notNullValue());
     }
 
-//    @Test
-//    public void update() throws Exception {
-//        notPersistedDto = dao().persist(notPersistedDto);
-//        Identification instance = dao().getByPrimaryKey(notPersistedDto.getId());
-//    }
+    @Test
+    public void update() throws Exception {
+        daoInstance = dao().persist(daoInstance);
+        Identification instance = dao().getByPrimaryKey(daoInstance.getId());
+        assertThat(instance, notNullValue());
+    }
 
     @Test
     public void delete() throws Exception {
-        notPersistedDto = dao().persist(notPersistedDto);
+        daoInstance = dao().persist(daoInstance);
 
         List list = dao().getAll();
         assertThat(list, notNullValue());
@@ -64,7 +61,7 @@ public abstract class AbstractDaoTest<Context> {
         int oldSize = list.size();
         assertThat(oldSize, greaterThan(0));
 
-        dao().delete(notPersistedDto);
+        dao().delete(daoInstance);
         list = dao().getAll();
         assertThat(list, notNullValue());
 
