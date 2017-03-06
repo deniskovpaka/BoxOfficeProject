@@ -28,11 +28,14 @@ public class InitializeRequestHandlerTest {
     private DaoFactory daoFactoryMock;
     @Mock
     private Connection connectionMock;
-
-    private InitializeRequestHandler handlerSpy;
+    @Mock
     private HttpServletRequest requestMock;
+    @Mock
     private HttpServletResponse responseMock;
 
+    private InitializeRequestHandler handlerSpy;
+
+    /** Parameters for testing */
     private final String BY_ID_METHOD_NAME          = "choosePlayByID";
     private final String USER_CHOICE_BY_ID          = "1";
     private final String BY_NAME_METHOD_NAME        = "choosePlayByName";
@@ -42,8 +45,6 @@ public class InitializeRequestHandlerTest {
     @Before
     public void setUp()
             throws Exception {
-        requestMock = Mockito.mock(HttpServletRequest.class);
-        responseMock = Mockito.mock(HttpServletResponse.class);
         handlerSpy = PowerMockito.spy(new InitializeRequestHandler(daoFactoryMock, connectionMock));
     }
 
