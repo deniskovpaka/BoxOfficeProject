@@ -1,7 +1,6 @@
 package net.proselyte.boxoffice.controller_tests;
 
 import net.proselyte.boxoffice.controller.request_handlers.InitializeRequestHandler;
-import net.proselyte.boxoffice.controller.request_handlers.RequestHandler;
 import net.proselyte.boxoffice.dao.DaoFactory;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,13 +21,8 @@ import static org.mockito.Mockito.times;
 import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.verifyPrivate;
 
-/**
- * The
- *
- * @author deniskovpaka
- */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({RequestHandler.class, InitializeRequestHandler.class})
+@PrepareForTest({InitializeRequestHandler.class})
 public class InitializeRequestHandlerTest {
     @Mock
     private DaoFactory daoFactoryMock;
